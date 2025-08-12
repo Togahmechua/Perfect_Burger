@@ -27,7 +27,7 @@ public class StartCanvas : UICanvas
                () =>
                {
                    UIManager.Ins.OpenUI<MainCanvas>();
-                   //LevelManager.Ins.SpawnLevel();
+                   LevelManager.Ins.SpawnLevel();
                });
     }
 }

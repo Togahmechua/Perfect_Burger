@@ -6,6 +6,24 @@ using UnityEngine;
 [RequireComponent(typeof(Camera))]
 public class ViewportHandler : MonoBehaviour
 {
+    #region Add
+    private void Start()
+    {
+        float aspectRatio = (float)Screen.height / Screen.width; // Vì đang làm màn hình dọc
+
+        if (aspectRatio > 1.8f)
+        {
+            // iPhone
+            UnitsSize = 9.5f;
+        }
+        else
+        {
+            // iPad
+            UnitsSize = 8f;
+        }
+    }
+    #endregion
+
     #region FIELDS
     public Color wireColor = Color.white;
     public float UnitsSize = 1; // size of your scene in unity units

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,8 +23,9 @@ public class LooseCanvas : UICanvas
             UIManager.Ins.TransitionUI<ChangeUICanvas, LooseCanvas>(0.6f,
                () =>
                {
+                   LevelManager.Ins.DespawnLevel();
                    UIManager.Ins.OpenUI<MainCanvas>();
-                   //LevelManager.Ins.LoadMapByID(LevelManager.Ins.curMapID);
+                   LevelManager.Ins.SpawnLevel();
                });
         });
 
@@ -37,7 +36,7 @@ public class LooseCanvas : UICanvas
             UIManager.Ins.TransitionUI<ChangeUICanvas, LooseCanvas>(0.6f,
                () =>
                {
-                   //LevelManager.Ins.DespawnMap();
+                   LevelManager.Ins.DespawnLevel();
                    UIManager.Ins.OpenUI<StartCanvas>();
                });
         });
