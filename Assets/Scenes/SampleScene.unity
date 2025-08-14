@@ -509,6 +509,37 @@ Transform:
   - {fileID: 1352742630}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &875239923
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 875239924}
+  m_Layer: 0
+  m_Name: MagicEff
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &875239924
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875239923}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1344959292}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &966479561
 GameObject:
   m_ObjectHideFlags: 0
@@ -863,6 +894,8 @@ Transform:
   m_Children:
   - {fileID: 304277879}
   - {fileID: 141361563}
+  - {fileID: 1509016522}
+  - {fileID: 875239924}
   m_Father: {fileID: 1653626242}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1344959293
@@ -886,7 +919,15 @@ MonoBehaviour:
     prefab: {fileID: 3928240828291785246, guid: 80340a8b9af396c43b6c6cd846a12e9b, type: 3}
     amount: 5
     collect: 1
-  Particle: []
+  Particle:
+  - root: {fileID: 1509016522}
+    particleType: 1
+    prefab: {fileID: 198175355013017282, guid: 67d9a85af73656649bc6417ebc1a2cd2, type: 3}
+    amount: 3
+  - root: {fileID: 875239924}
+    particleType: 2
+    prefab: {fileID: 19851920, guid: 5b3d285e289a5b646964487421ce5724, type: 3}
+    amount: 3
 --- !u!1 &1352742629
 GameObject:
   m_ObjectHideFlags: 0
@@ -955,6 +996,37 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
+--- !u!1 &1509016521
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1509016522}
+  m_Layer: 0
+  m_Name: BloodEff
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1509016522
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1509016521}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1344959292}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1653626241
 GameObject:
   m_ObjectHideFlags: 0
@@ -1041,14 +1113,12 @@ MonoBehaviour:
   musicSource: {fileID: 814007558}
   sfxSource: {fileID: 966479563}
   masterMixer: {fileID: 24100000, guid: 78223d573bfbe9341a9dbfac6ae1e522, type: 2}
-  backgroundClip: {fileID: 0}
-  click: {fileID: 0}
-  loose: {fileID: 0}
-  coin: {fileID: 0}
-  hurt: {fileID: 0}
-  dead: {fileID: 0}
-  horn: {fileID: 0}
-  drift: {fileID: 0}
+  backgroundClip: {fileID: 8300000, guid: 3a52881a5e6c8a84fb2f719f3b4d4743, type: 3}
+  click: {fileID: 8300000, guid: ca906674cb0f70d47b1ea51e8bd44d56, type: 3}
+  loose: {fileID: 8300000, guid: b7a84fbafc2619b4c9e06f8f3843d530, type: 3}
+  correct: {fileID: 8300000, guid: 42d8e6ecdddb92d4b8fa38efc22a5fef, type: 3}
+  hurt: {fileID: 8300000, guid: 3032c4c5df717aa44b08fe245c6a4ee3, type: 3}
+  dead: {fileID: 8300000, guid: ec84d2e784af826479c07647c16e1770, type: 3}
 --- !u!1 &2015062279
 GameObject:
   m_ObjectHideFlags: 0

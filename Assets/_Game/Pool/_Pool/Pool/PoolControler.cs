@@ -139,8 +139,8 @@ public class ParticleAmount
 public enum ParticleType
 {
     None,
-    ConfettiEff,
-    SmokeEff
+    BloodEff,
+    MagicEff
 }
 
 public enum PoolType

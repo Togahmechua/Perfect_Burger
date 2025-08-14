@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using EZCameraShake;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class RecipeManager : Singleton<RecipeManager>
@@ -11,6 +13,8 @@ public class RecipeManager : Singleton<RecipeManager>
     private Vector3 currentSpawnPos;
 
     private int currentIngredientIndex = 0; // Vị trí đang check trong recipe
+
+    private bool flag;
 
 
     public IngridientSO GetIngredientByEnum(EIngredient eIngredient)
@@ -40,7 +44,7 @@ public class RecipeManager : Singleton<RecipeManager>
         return filteredValues[rand];
     }
 
-    public void TryAddIngredient(EIngredient eIngredient)
+    public void TryAddIngredient(EIngredient eIngredient, Vector3 pos)
     {
         if (eIngredient == EIngredient.None)
             return;
@@ -59,15 +63,38 @@ public class RecipeManager : Singleton<RecipeManager>
             SpawnIngredient(eIngredient);
             currentIngredientIndex++;
 
+            ParticlePool.Play(ParticleType.MagicEff, pos, Quaternion.identity);
+            AudioManager.Ins.PlaySFX(AudioManager.Ins.correct);
+
             if (currentIngredientIndex >= recipe.ingredients.Count)
             {
                 Debug.Log("Burger hoàn thành!");
+
+                StartCoroutine(IEWait());
             }
         }
         else
         {
             Debug.Log($"Sai nguyên liệu! Cần: {correctIngr.igrd.eIngrType}");
+            ParticlePool.Play(ParticleType.BloodEff, pos, Quaternion.identity);
+
+            LevelManager.Ins.curLevel.TakeDamge();
+
+            CameraShaker.Instance.ShakeOnce(4f, 4f, 0.1f, 1f);
+            Handheld.Vibrate();
         }
+    }
+
+    private IEnumerator IEWait()
+    {
+        LevelManager.Ins.curLevel.isDead = true;
+        yield return new WaitForSeconds(0.5f);
+        ResetBurgerStack();
+
+        SimplePool.Collect(PoolType.Food);
+
+        UIManager.Ins.mainCanvas.UpdatePoint(1);
+        LevelManager.Ins.curLevel.isDead = false;
     }
 
     private void SpawnIngredient(EIngredient eIngredient)
@@ -91,7 +118,7 @@ public class RecipeManager : Singleton<RecipeManager>
     public void ResetBurgerStack()
     {
         currentOrderOffset = 0;
-        currentSpawnPos = LevelManager.Ins.curLevel.burgerBottom.position;
+        currentSpawnPos = Vector3.zero;
         currentIngredientIndex = 0;
     }
 }

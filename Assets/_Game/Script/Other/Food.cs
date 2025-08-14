@@ -18,9 +18,14 @@ public class Food : GameUnit, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (LevelManager.Ins.curLevel.isDead)
+            return;
+
         Debug.Log("Click");
 
         AddIngredient();
+
+        SimplePool.Despawn(this);
     }
 
     private void Update()
@@ -41,7 +46,7 @@ public class Food : GameUnit, IPointerDownHandler
 
     public void AddIngredient()
     {
-        RecipeManager.Ins.TryAddIngredient(eIgrType);
+        RecipeManager.Ins.TryAddIngredient(eIgrType, transform.position);
     }
 
     public void SetConfig(IngridientSO ig)
